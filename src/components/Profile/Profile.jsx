@@ -1,10 +1,14 @@
 /* eslint-disable no-console */
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../features/auth';
 
 const Profile = () => {
-  console.log('Profile');
+  const { user } = useSelector(userSelector);
   return (
-    <div>Profile</div>
+    <div>
+      Profile - {user.username}
+    </div>
   );
 };
 
