@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { ArrowBack } from '@mui/icons-material';
 import { useGetActorsDetailsQuery, useGetMoviesByActorIdQuery } from '../../services/TMDB';
 // eslint-disable-next-line import/no-cycle
-import { MovieList } from '..';
+import { MovieList, Pagination } from '..';
 
 import useStyles from './styles';
 
@@ -13,7 +13,7 @@ const Actors = () => {
   const { id } = useParams();
   const history = useHistory();
   const { data, isFetching, error } = useGetActorsDetailsQuery(id);
-  const page = 1;
+  const [page, setPage] = useState(1);
   const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
   const classes = useStyles();
   if (isFetching) {
@@ -69,6 +69,7 @@ const Actors = () => {
           Movies
         </Typography>
         {movies && <MovieList movies={movies} numberOfMovies={12} />}
+        <Pagination currentPage={page} setPage={setPage} totalPages={movies?.total_pages} />
       </Box>
     </>
   );
