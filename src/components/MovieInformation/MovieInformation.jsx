@@ -46,6 +46,7 @@ const MovieInformation = () => {
   }
   return (
     <Grid container className={classes.containerSpaceAround}>
+      {/* style={{ display: 'flex', marginBottom: '30px' }} */}
       <Grid item sm={12} lg={4}>
         <img
           className={classes.poster}
@@ -64,7 +65,7 @@ const MovieInformation = () => {
             </Typography>
           </Box>
           <Typography variant="h6" align="center" gutterBottom>
-            {data?.runtime} min {data?.spoken_languages.length > 0 ? `/ ${data?.spoken_languages[0].name}` : ''}
+            {data?.runtime} min | Langauge : {data?.spoken_languages[0].name}
           </Typography>
         </Grid>
         <Grid item className={classes.genresContainer}>
@@ -132,9 +133,9 @@ const MovieInformation = () => {
         <Typography variant="h3" gutterBottom align="center">
           You might also like
         </Typography>
-        {recommendations
+        {recommendations && recommendations.length > 0
           ? <MovieList movies={recommendations} numberOfMovies={12} />
-          : <Box> Sorry Nothing was Found </Box>}
+          : <Box style={{ display: 'flex', justifyContent: 'center' }}> Sorry, Nothing was Found :( </Box>}
       </Box>
       <Modal
         closeAfterTransition

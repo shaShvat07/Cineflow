@@ -10,12 +10,16 @@ import { searchMovie } from '../../features/currentGenreOrCatergory';
 const Search = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const location = useLocation();
+
   const [query, setQuery] = useState('');
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       dispatch(searchMovie(query));
     }
   };
+
+  if (location.pathname !== '/') return null;
 
   return (
     <div>
