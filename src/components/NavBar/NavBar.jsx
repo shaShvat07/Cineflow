@@ -88,7 +88,7 @@ const NavBar = () => {
                 className={classes.linkButton}
                 onClick={() => {}}
               >
-                {!isMobile && <> My Mobile &nbsp; </>}
+                {!isMobile && <> My Movies &nbsp; </>}
                 <Avatar
                   style={{ width: 30, height: 30 }}
                   alt="Profile"
