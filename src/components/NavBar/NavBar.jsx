@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-console */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   AppBar,
   IconButton,
@@ -21,6 +21,7 @@ import { useTheme } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './styles';
 import { Sidebar, Search } from '..';
+import { ColorModeContext } from '../../utils/ToggleColorMode';
 import { fetchToken, createSessionId, moviesApi } from '../../utils/index';
 import { setUser, userSelector } from '../../features/auth';
 
@@ -33,8 +34,7 @@ const NavBar = () => {
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
   const dispatch = useDispatch();
-
-  // console.log('user ', user);
+  const colorMode = useContext(ColorModeContext);   
 
   useEffect(() => {
     const logInUser = async () => {
@@ -44,7 +44,7 @@ const NavBar = () => {
             `/account?session_id=${sessionIdFromLocalStorage}`,
           );
 
-          dispatch(setUser(userData));
+          dispatch(setUser(userData));       
         } else {
           const sessionId = await createSessionId();
           const { data: userData } = await moviesApi.get(
@@ -71,7 +71,7 @@ const NavBar = () => {
               <Menu />
             </IconButton>
           )}
-          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
+          <IconButton color="inherit" sx={{ ml: 1 }} onClick={colorMode.toggleColorMode}>
             {theme.palette.mode === 'Light' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search />}

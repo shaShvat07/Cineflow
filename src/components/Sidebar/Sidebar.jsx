@@ -23,7 +23,7 @@ const Sidebar = ({ setMobileOpen }) => {
   const { data, isFetching } = useGetGenresQuery();
   const dispatch = useDispatch();
   // eslint-disable-next-line no-console
-  console.log(genreIdOrCategoryName);
+  // console.log(genreIdOrCategoryName);
   return (
     <>
       <Link to="/" className={classes.imageLink}>

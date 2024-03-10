@@ -3,21 +3,19 @@ import ReactDOM from 'react-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { BrowserRouter } from 'react-router-dom';
 // importing mui themes
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux';
 import App from './components/App.jsx';
 import './index.css';
 import store from './app/store';
-
-const theme = createTheme({});
+import ToggleColorModeProvider from './utils/ToggleColorMode';
 // eslint-disable-next-line react/no-deprecated
 ReactDOM.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
+    <ToggleColorModeProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </ThemeProvider>
+    </ToggleColorModeProvider>
   </Provider>,
   document.getElementById('root'),
 );
